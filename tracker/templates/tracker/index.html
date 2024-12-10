@@ -1,23 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Expense</title>
+
+    <!-- AdminLTE CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
 </head>
-<body>
-    <header>
-        <h1>Add Expense</h1>
-    </header>
-    <main>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Add Expense</button>
-        </form>
-        <p>
-            <a href="{% url 'expense_list' %}">Back to Expense List</a>
-        </p>
-    </main>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <header class="main-header">
+            <a href="#" class="brand-link">
+                <span class="brand-text font-weight-light">Expense Manager</span>
+            </a>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <p>Add Expense</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Content Header -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <h1 class="m-0">Add Expense</h1>
+                </div>
+            </section>
+
+            <!-- Main Content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="card">
+                            <div class="card-body">
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-primary">Add Expense</button>
+                            </div>
+                        </div>
+                    </form>
+                    <p>
+                        <a href="{% url 'expense_list' %}" class="btn btn-secondary mt-2">Back to Expense List</a>
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <strong>&copy; 2024 Expense Manager</strong>
+        </footer>
+    </div>
+
+    <!-- AdminLTE Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 </body>
+
 </html>
