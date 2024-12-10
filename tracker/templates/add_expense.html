@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense</title>
+</head>
+<body>
+    <header>
+        <h1>Add Expense</h1>
+    </header>
+    <main>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Expense</button>
+        </form>
+        <p>
+            <a href="{% url 'expense_list' %}">Back to Expense List</a>
+        </p>
+    </main>
+</body>
+</html>
