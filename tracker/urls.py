@@ -1,8 +1,7 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
     path('', views.expense_list, name='expense_list'),
-    path('add/', views.add_expense, name='add_expense'),
-    path('', include('tracker.urls')),
+    path('add/', views.index, name='add_expense'),  # Fix here
 ]
