@@ -13,15 +13,12 @@ def expense_list(request):
 
 
 def index(request):
-    try:
-        if request.method == 'POST':
-            form = ExpenseForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('expense_list')
-        else:
-            form = ExpenseForm()
-        return render(request, 'tracker/index.html', {'form': form})
-    except Exception as e:
-        print("Error in index view:", e)
-        return render(request, 'tracker/error.html', {'error': str(e)})
+    if request.method == 'POST':
+        form = ExpenseForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the data if valid
+            return redirect('index')  # Redirect after submission
+    else:
+        form = ExpenseForm()  # Initialize an empty form
+
+    return render(request, 'tracker/index.html', {'form': form})

@@ -48,18 +48,25 @@
             <!-- Main Content -->
             <section class="content">
                 <div class="container-fluid">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="card">
-                            <div class="card-body">
-                                {{ form.as_p }}
-                                <button type="submit" class="btn btn-primary">Add Expense</button>
-                            </div>
+                    <!-- Expense Form Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Enter Your Expense Details</h3>
                         </div>
-                    </form>
-                    <p>
-                        <a href="{% url 'expense_list' %}" class="btn btn-secondary mt-2">Back to Expense List</a>
-                    </p>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <!-- Dynamically render form fields using form.as_p -->
+                                <div class="form-group">
+                                    {{ form.as_p }}
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary">Add Expense</button>
+                                    <a href="{% url 'expense_list' %}" class="btn btn-secondary mt-2">Back to Expense List</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </section>
         </div>
