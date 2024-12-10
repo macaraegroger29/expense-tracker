@@ -5,12 +5,15 @@ from .forms import ExpenseForm
 
 
 def expense_list(request):
+    if request.method != "GET":
+        return HttpResponseBadRequest("Invalid HTTP method.")  # Fix for 405 error
     try:
         expenses = Expense.objects.all()
         return render(request, 'tracker/expense_list.html', {'expenses': expenses})
     except Exception as e:
         print("Error in expense_list view:", e)
         return render(request, 'tracker/error.html', {'error': str(e)})
+
 
 
 def index(request):
@@ -28,12 +31,11 @@ def index(request):
 def dynamic_doc(request, doc_name):
     """
     Dynamically render HTML files located in 'docs/' safely
-    by checking against allowed names.
+    by checking allowed filenames dynamically.
     """
-    allowed_docs = ['index', 'another']  # Whitelist allowed names for security
-    
-    if doc_name in allowed_docs:
-        # Correctly reference the file path
-        return render(request, f'docs/{doc_name}.html')
+    docs_path = 'tracker/templates/tracker'
+
+    if doc_name in [f.split('.')[0] for f in os.listdir(docs_path)]:  # Dynamically validate
+        return render(request, f'tracker/{doc_name}.html')
     else:
         return HttpResponseForbidden("You don't have permission to access this file.")
